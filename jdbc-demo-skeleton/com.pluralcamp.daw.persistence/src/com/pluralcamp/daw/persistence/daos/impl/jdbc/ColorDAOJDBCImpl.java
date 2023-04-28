@@ -10,11 +10,11 @@ public class ColorDAOJDBCImpl implements ColorDAO {
     @Override
     public Color getColorById(long id) throws DAOException {
 
-        //Objectes que calen:
-        //1er objecte - Connexio, via DriverManager de JDBC
-        //2n objecte - Obrir un canal de Consulta - PraparedStatement
-        //2.1 - Enviar la consulta SQL
-        //3er objecte - Obrir un canal de Lectura, un cursor - ResultSet
+        // Objectes que calen:
+        // 1er objecte - Connexio, via DriverManager de JDBC
+        // 2n objecte - Obrir un canal de Consulta - PraparedStatement
+        // 2.1 - Enviar la consulta SQL
+        // 3er objecte - Obrir un canal de Lectura, un cursor - ResultSet
 
         return null;
     }

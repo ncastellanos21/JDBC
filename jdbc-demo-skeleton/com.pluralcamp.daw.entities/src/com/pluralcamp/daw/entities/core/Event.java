@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class Event  {
+public class Event {
 
-    //<editor-fold defaultstate="collapsed" desc="Estat: Atributs/Camps">
+    // <editor-fold defaultstate="collapsed" desc="Estat: Atributs/Camps">
     private long id = -1;
     private String name;
     private LocalDate date;
@@ -29,12 +29,14 @@ public class Event  {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    //</editor-fold>
+    // </editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Comportament: Metodes/Operacions">
+    // <editor-fold defaultstate="collapsed" desc="Comportament:
+    // Metodes/Operacions">
 
-    //<editor-fold defaultstate="collapsed" desc="Constructores">
-    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime, String place, String description, Color backgroundColor, Color textColor, boolean visible) {
+    // <editor-fold defaultstate="collapsed" desc="Constructores">
+    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime, String place, String description,
+            Color backgroundColor, Color textColor, boolean visible) {
         this.setName(name);
         this.setDate(date);
         this.setStartTime(startTime);
@@ -47,36 +49,45 @@ public class Event  {
         this.setRegistrationDate(LocalDateTime.now());
     }
 
-    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime, String place, String description, Color backgroundColor, Color textColor) {
+    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime, String place, String description,
+            Color backgroundColor, Color textColor) {
         this(name, date, startTime, endTime, place, description, backgroundColor, textColor, true);
     }
 
-    public Event(String name, LocalDate date, String place, String description, Color backgroundColor, Color textColor, boolean visible) {
-        this(name, date, LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59),place, description, backgroundColor, textColor, visible);
+    public Event(String name, LocalDate date, String place, String description, Color backgroundColor, Color textColor,
+            boolean visible) {
+        this(name, date, LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59), place, description, backgroundColor,
+                textColor, visible);
     }
 
-    public Event(String name, LocalDate date, String place, String description, Color backgroundColor, Color textColor) {
-        this(name, date, LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59), place, description, backgroundColor, textColor, true);
+    public Event(String name, LocalDate date, String place, String description, Color backgroundColor,
+            Color textColor) {
+        this(name, date, LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59), place, description, backgroundColor,
+                textColor, true);
     }
 
-    public Event(String name, String date, String startTime, String endTime, String place, String description, Color backgroundColor, Color textColor, boolean visible) {
-        this(name, LocalDate.parse(date, DATE_FORMATTER), LocalTime.parse(startTime, TIME_FORMATTER), LocalTime.parse(endTime, TIME_FORMATTER), place, description, backgroundColor, textColor, visible);
+    public Event(String name, String date, String startTime, String endTime, String place, String description,
+            Color backgroundColor, Color textColor, boolean visible) {
+        this(name, LocalDate.parse(date, DATE_FORMATTER), LocalTime.parse(startTime, TIME_FORMATTER),
+                LocalTime.parse(endTime, TIME_FORMATTER), place, description, backgroundColor, textColor, visible);
     }
 
-    public Event(String name, String date, String startTime, String endTime, String place, String description, Color backgroundColor, Color textColor) {
+    public Event(String name, String date, String startTime, String endTime, String place, String description,
+            Color backgroundColor, Color textColor) {
         this(name, date, startTime, endTime, place, description, backgroundColor, textColor, true);
     }
 
-    public Event(String name, String date, String place, String description, Color backgroundColor, Color textColor, boolean visible) {
+    public Event(String name, String date, String place, String description, Color backgroundColor, Color textColor,
+            boolean visible) {
         this(name, date, "00:00", "23:59", place, description, backgroundColor, textColor, visible);
     }
 
     public Event(String name, String date, String place, String description, Color backgroundColor, Color textColor) {
         this(name, date, place, description, backgroundColor, textColor, true);
     }
-    //</editor-fold>
+    // </editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    // <editor-fold defaultstate="collapsed" desc="Getters/Setters">
 
     public long getId() {
         return id;
@@ -102,7 +113,9 @@ public class Event  {
             throw new NullPointerException("Es obligatorio indicar el nombre de un evento");
         }
         if (name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("El nombre del evento no puede ser superior a %d caracteres. Longitud indicada: %d", NAME_MAX_LENGTH, name.length()));
+            throw new IllegalArgumentException(
+                    String.format("El nombre del evento no puede ser superior a %d caracteres. Longitud indicada: %d",
+                            NAME_MAX_LENGTH, name.length()));
         }
         this.name = name;
     }
@@ -134,7 +147,8 @@ public class Event  {
             throw new NullPointerException("Es obligatorio indicar la hora de inicio del evento");
         }
         if (this.getEndTime() != null && !startTime.isBefore(this.getEndTime())) {
-            throw new IllegalArgumentException("La hora de finalizaciￃﾳn del evento no puede ser anterior o igual a la hora de inicio");
+            throw new IllegalArgumentException(
+                    "La hora de finalizaciￃﾳn del evento no puede ser anterior o igual a la hora de inicio");
         }
         if (this.getEndTime() != null && Duration.between(startTime, this.getEndTime()).toMinutes() < MIN_DURATION) {
             throw new IllegalArgumentException("La duraciￃﾳn del evento no puede ser inferior a 30'");
@@ -153,8 +167,9 @@ public class Event  {
         if (endTime == null) {
             throw new NullPointerException("Es obligatorio indicar la hora de fin del evento");
         }
-        if (this.getStartTime()!= null && !endTime.isAfter(this.getStartTime())) {
-            throw new IllegalArgumentException("La hora de finalizaciￃﾳn del evento no puede ser posterior o igual a la hora de inicio");
+        if (this.getStartTime() != null && !endTime.isAfter(this.getStartTime())) {
+            throw new IllegalArgumentException(
+                    "La hora de finalizaciￃﾳn del evento no puede ser posterior o igual a la hora de inicio");
         }
         if (this.getStartTime() != null && Duration.between(this.getStartTime(), endTime).toMinutes() < MIN_DURATION) {
             throw new IllegalArgumentException("La duraciￃﾳn del evento no puede ser inferior a 30'");
@@ -171,7 +186,9 @@ public class Event  {
             throw new NullPointerException("Es obligatorio indicar el lugar de celebraciￃﾳn de un evento");
         }
         if (place.length() > PLACE_MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("El lugar de celebraciￃﾳn del evento no puede ser superior a %d caracteres. Longitud indicada: %d", PLACE_MAX_LENGTH, place.length()));
+            throw new IllegalArgumentException(String.format(
+                    "El lugar de celebraciￃﾳn del evento no puede ser superior a %d caracteres. Longitud indicada: %d",
+                    PLACE_MAX_LENGTH, place.length()));
         }
         this.place = place;
     }
@@ -185,7 +202,9 @@ public class Event  {
             throw new NullPointerException("Es obligatorio indicar la descripciￃﾳn de un evento");
         }
         if (description.length() > DESCRIPTION_MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("La descripciￃﾳn del evento no puede ser superior a %d caracteres. Longitud indicada: %d", DESCRIPTION_MAX_LENGTH, description.length()));
+            throw new IllegalArgumentException(String.format(
+                    "La descripciￃﾳn del evento no puede ser superior a %d caracteres. Longitud indicada: %d",
+                    DESCRIPTION_MAX_LENGTH, description.length()));
         }
         this.description = description;
     }
@@ -199,7 +218,9 @@ public class Event  {
             throw new NullPointerException("Es obligatorio indicar el color de fondo del evento");
         }
         if (this.getTextColor() != null && backgroundColor.equals(this.getTextColor())) {
-            throw new IllegalArgumentException(String.format("El color de fondo y de texto de un evento no puede ser el mismo. Color: %s", backgroundColor.toHexString()));
+            throw new IllegalArgumentException(
+                    String.format("El color de fondo y de texto de un evento no puede ser el mismo. Color: %s",
+                            backgroundColor.toHexString()));
         }
         this.backgroundColor = backgroundColor;
     }
@@ -212,8 +233,10 @@ public class Event  {
         if (textColor == null) {
             throw new NullPointerException("Es obligatorio indicar el color de texto del evento");
         }
-        if (this.getBackgroundColor()!= null && textColor.equals(this.getBackgroundColor())) {
-            throw new IllegalArgumentException(String.format("El color de fondo y de texto de un evento no puede ser el mismo. Color: %s", textColor.toHexString()));
+        if (this.getBackgroundColor() != null && textColor.equals(this.getBackgroundColor())) {
+            throw new IllegalArgumentException(
+                    String.format("El color de fondo y de texto de un evento no puede ser el mismo. Color: %s",
+                            textColor.toHexString()));
         }
         this.textColor = textColor;
     }
@@ -238,16 +261,17 @@ public class Event  {
         this.registrationDate = registrationDate;
     }
 
-    //</editor-fold>
+    // </editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="API pￃﾺblica del objeto">
+    // <editor-fold defaultstate="collapsed" desc="API pￃﾺblica del objeto">
 
     public String getDateInfo() {
         return DATE_FORMATTER.format(this.getDate());
     }
 
     public String getStartTimeInfo(boolean timeIndicator) {
-        return timeIndicator ? String.format("%sh", TIME_FORMATTER.format(this.getStartTime())) : TIME_FORMATTER.format(this.getStartTime());
+        return timeIndicator ? String.format("%sh", TIME_FORMATTER.format(this.getStartTime()))
+                : TIME_FORMATTER.format(this.getStartTime());
     }
 
     public String getStartTimeInfo() {
@@ -255,7 +279,8 @@ public class Event  {
     }
 
     public String getEndTimeInfo(boolean timeIndicator) {
-        return timeIndicator ? String.format("%sh", TIME_FORMATTER.format(this.getEndTime())) : TIME_FORMATTER.format(this.getEndTime());
+        return timeIndicator ? String.format("%sh", TIME_FORMATTER.format(this.getEndTime()))
+                : TIME_FORMATTER.format(this.getEndTime());
     }
 
     public String getEndTimeInfo() {
@@ -263,7 +288,8 @@ public class Event  {
     }
 
     public String getDateTimeInfo(boolean timeIndicator) {
-        return String.format("%s %s - %s", getDateInfo(), getStartTimeInfo(timeIndicator), getEndTimeInfo(timeIndicator));
+        return String.format("%s %s - %s", getDateInfo(), getStartTimeInfo(timeIndicator),
+                getEndTimeInfo(timeIndicator));
     }
 
     public String getDateTimeInfo() {
@@ -279,14 +305,16 @@ public class Event  {
     }
 
     public boolean isFinished() {
-        return this.getDate().isBefore(LocalDate.now()) || (this.getDate().isEqual(LocalDate.now()) && this.getEndTime().isBefore(LocalTime.now()));
+        return this.getDate().isBefore(LocalDate.now())
+                || (this.getDate().isEqual(LocalDate.now()) && this.getEndTime().isBefore(LocalTime.now()));
     }
 
     public boolean isBefore(Event event) {
         if (event == null) {
             throw new NullPointerException("El evento a comparar no puede ser la referencia nula");
         }
-        return this.getDate().isBefore(event.getDate()) || (this.getDate().isEqual(event.getDate()) && this.getStartTime().isBefore(event.getStartTime()));
+        return this.getDate().isBefore(event.getDate())
+                || (this.getDate().isEqual(event.getDate()) && this.getStartTime().isBefore(event.getStartTime()));
     }
 
     public boolean isAfter(Event event) {
@@ -294,7 +322,8 @@ public class Event  {
             throw new NullPointerException("El evento a comparar no puede ser la referencia nula");
         }
 
-        return this.getDate().isAfter(event.getDate()) || (this.getDate().isEqual(event.getDate()) && this.getStartTime().isAfter(event.getStartTime()));
+        return this.getDate().isAfter(event.getDate())
+                || (this.getDate().isEqual(event.getDate()) && this.getStartTime().isAfter(event.getStartTime()));
     }
 
     public int getDaysLeft() {
@@ -313,9 +342,9 @@ public class Event  {
         return Math.abs(Period.between(this.getDate(), event.getDate()).getDays());
     }
 
-    //</editor-fold>
+    // </editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Sobreescritura de mￃﾩtodos">
+    // <editor-fold defaultstate="collapsed" desc="Sobreescritura de mￃﾩtodos">
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -335,9 +364,9 @@ public class Event  {
         sb.append(String.format("- Registrado:     %s %n", this.getRegistrationDateInfo()));
         return sb.toString();
     }
-    //</editor-fold>
+    // </editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Mￃﾩtodos estￃﾡticos o de clase">
+    // <editor-fold defaultstate="collapsed" desc="Mￃﾩtodos estￃﾡticos o de clase">
 
     public static int getDaysBetween(Event event1, Event event2) {
         if (event1 == null || event2 == null) {
@@ -346,9 +375,8 @@ public class Event  {
 
         return Math.abs(Period.between(event1.getDate(), event2.getDate()).getDays());
     }
-    //</editor-fold>
+    // </editor-fold>
 
-    //</editor-fold>
+    // </editor-fold>
 
 }
-
