@@ -7,6 +7,7 @@ import com.pluralcamp.daw.persistence.exceptions.DAOException;
 import java.util.List;
 
 public class EventDAOJDBCImpl implements EventDAO {
+    
     @Override
     public Event getEventById(long id) throws DAOException {
         return null;
