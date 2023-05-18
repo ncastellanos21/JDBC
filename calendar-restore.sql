@@ -100,7 +100,7 @@ CREATE TABLE `events` (
   KEY `textColor_idx` (`textColor`),
   CONSTRAINT `backgroundColor` FOREIGN KEY (`backgroundColor`) REFERENCES `colors` (`id`),
   CONSTRAINT `textColor` FOREIGN KEY (`textColor`) REFERENCES `colors` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8_spanish_ci ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
