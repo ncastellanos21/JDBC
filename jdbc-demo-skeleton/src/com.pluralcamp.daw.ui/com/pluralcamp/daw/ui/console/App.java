@@ -19,7 +19,8 @@ public class App {
         try {
             Color c = colorDAO.getColorById(5);
             if (c != null) {
-                System.out.println(c.toString());
+                System.out.println(c.toString(
+                ));
             }
         } catch (DAOException ex) {
             System.out.printf("Error:: %s \n", ex.getMessage());
